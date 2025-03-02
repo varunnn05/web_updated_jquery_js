@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+/* document.addEventListener("DOMContentLoaded", function() {
     // Smooth scrolling for navigation links
     document.querySelectorAll('nav a').forEach(anchor => {
         anchor.addEventListener('click', function(event) {
@@ -31,5 +31,21 @@ document.addEventListener("DOMContentLoaded", function() {
         img.addEventListener('mouseout', function() {
             this.style.transform = 'scale(1)';
         });
+    });
+});
+*/
+document.querySelectorAll('nav a').forEach(anchor => {
+    anchor.addEventListener('click', function(event) {
+        let targetHref = this.getAttribute('href');
+        if (targetHref.startsWith("#")) {  // Allow smooth scroll only for internal links
+            event.preventDefault();
+            let target = document.querySelector(targetHref);
+            if (target) {
+                window.scrollTo({
+                    top: target.offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        }
     });
 });
